@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-
+import client from './database.js'
 
 const app = express();
 
@@ -21,4 +21,7 @@ app.get('/', (req, res) => {
 app.listen(8000, () => {
     console.log("Server is now listening in 8000")
 })
+
+client.connect()
+console.log("Client connected")
 
