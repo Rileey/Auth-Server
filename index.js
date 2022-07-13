@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import client from './database.js'
+import userRoute from './route/user_route.js'
 
 const app = express();
 
@@ -11,6 +12,10 @@ app.use(express.urlencoded({
     parameterLimit: 1000000,
     extended: false
 }));
+
+//route
+app.use('/', userRoute);
+
 
 
 app.get('/', (req, res) => {

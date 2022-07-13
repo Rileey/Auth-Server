@@ -50,7 +50,7 @@ const AuthController = {
             if (hash) {
                 // create new user by inserting into these columns 'email, firstname, lastname, password'
                 const newUser = await client.query(`INSERT INTO users (email, firstname, lastname, password) VALUES($1, $2, $3, $4)`,
-                [user.email, user.firstname, user.lastname, user.password, user.examnumber]
+                [user.email, user.firstname, user.lastname, user.password]
                 )
                 if (newUser){
                     jwt.sign(
@@ -61,8 +61,7 @@ const AuthController = {
                                 if (err) {
                                     throw err
                                 }
-                                console.log(newUser._doc, newUser.rows)
-                                res.json({success:'New user has been created', data: {token: `Bearer ${token}`, firstname: newUser.firstname, lastname: newUser.lastname, email: newUser.email, examnumber: newUser.examnumber}})
+                                res.json({success:'New user has been created', data: {token: `Bearer ${token}`, firstname: user.firstname, lastname: user.lastname, email: user.email}})
                             }
                     )
                 } 
@@ -72,3 +71,5 @@ const AuthController = {
         }
     }
 }
+
+export default AuthController
