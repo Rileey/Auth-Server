@@ -7,7 +7,7 @@
   "description": "user-auth",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "nodemon Serindex.js",
     "build": "webpack",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --detectOpenHandles"
   },
@@ -30,8 +30,5 @@
     "pg": "^8.7.3",
     "pkg": "^5.8.0",
     "supertest": "^6.2.4"
-  },
-  "devDependencies": {
-    "webpack": "^5.73.0"
   }
 }
