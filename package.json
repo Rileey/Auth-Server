@@ -7,9 +7,12 @@
   "description": "user-auth",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon Serindex.js",
+    "start": "nodemon index.js",
     "build": "webpack",
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --detectOpenHandles"
+    "build:prod": "webpack --config webpack.prod.js",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --detectOpenHandles",
+    "heroku-postbuild": "webpack --config webpack.prod.js",
+    "dev": "npm run build -- --watch"
   },
   "type": "module",
   "jest": {
