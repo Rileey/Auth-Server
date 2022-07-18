@@ -69,6 +69,37 @@ const AuthController = {
         } catch (err) {
             console.error(err)
         }
+    },
+
+    users: async (req, res) => {
+        try {
+            const users = await client.query("SELECT * FROM users");
+            res.send(users.rows)
+            // console.log(users.rows.length)
+        } catch (err) {
+            console.error(err.message)
+        }
+    },
+
+    user: async (req, res) => {
+        try {
+            const { user_id } = req.params
+            const findUser = await client.query("SELECT * FROM users WHERE user_id = $1;", [user_id]);
+            const foundUser = findUser.rows
+            res.send(foundUser)
+        } catch (err) {
+            console.error(err.message)
+        }
+    },
+
+    delete: async (req, res) => {
+        try {
+            const { user_id } = req.params
+            const deleteUser = await client.query("DELETE from users WHERE user_id = $1;", [user_id]);
+            res.json({message: `user deleted`})
+        } catch (err) {
+            console.error(err)
+        }
     }
 }
 
